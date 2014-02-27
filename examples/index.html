@@ -1,0 +1,91 @@
+<!doctype html>
+<html lang="en">
+	<head>
+		<meta charset="utf-8">
+		<title>Menu Examples</title>
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<style>
+			body {
+				font-family: sans-serif;
+			}
+			h3 {
+				margin-top: 5em;
+			}
+			a[data-menu-trigger]{
+				color: #333;
+				padding: .5em 1em;
+				text-decoration: none;
+				text-align: center;
+				display: inline-block;
+				border: 1px solid #eee;
+				background: #fff;
+			}
+			[data-menu]{
+				padding: 0;
+				border: 1px solid #eee;
+				box-shadow: 1px 1px 5px #ddd;
+				background: #fff;
+			}
+			[data-menu] ul,
+			[data-menu] li {
+				list-style: none;
+				padding: 0;
+				margin: 0;
+			}
+			[data-menu] a {
+				display: block;
+				color: #333;
+				padding: .5em 1em;
+				text-decoration: none;
+			}
+			[data-menu] a:hover,
+			[data-menu] a:focus {
+				background: #eee;
+			}
+		</style>
+		<link rel="stylesheet" href="../src/menu.css" />
+	</head>
+	<body>
+
+		<h3>Example 1: menu button trigger</h3>
+
+		<a href="#options" data-menu-trigger="options">Menu</a>
+
+		<div id="options" data-menu>
+			<ul>
+				<li><a href="#">Menu Item 1</a></li>
+				<li><a href="#">Menu Item 2</a></li>
+				<li><a href="#">Menu Item 3</a></li>
+				<li><a href="#">Menu Item 4</a></li>
+				<li><a href="#">Menu Item 5</a></li>
+				<li><a href="#">Menu Item 6</a></li>
+			</ul>
+		</div>
+
+
+		<h3>Example 2: menu input trigger</h3>
+
+		<input data-menu-trigger="list"/>
+
+		<div id="list" data-menu>
+			<ul>
+				<li><a href="#">Menu Item 1</a></li>
+				<li><a href="#">Menu Item 2</a></li>
+				<li><a href="#">Menu Item 3</a></li>
+				<li><a href="#">Menu Item 4</a></li>
+				<li><a href="#">Menu Item 5</a></li>
+				<li><a href="#">Menu Item 6</a></li>
+			</ul>
+		</div>
+
+
+
+		<!-- normally you would concatenate these -->
+		<script src="../libs/jquery/jquery.js"></script>
+		<script src="../src/menu.js"></script>
+		<script src="../src/menu-init.js"></script>
+		<script src="../src/menu-trigger.js"></script>
+		<script src="../src/menu-trigger-init.js"></script>
+		<script src="init.js"></script>
+	</body>
+</html>
