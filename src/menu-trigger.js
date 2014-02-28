@@ -28,7 +28,7 @@
 				.attr( "role", "button" )
 				.bind( "click", function( e ){
 					e.preventDefault();
-					self.menu.toggle( this );
+					self.menu.toggle( this, true );
 				});
 		}
 		else if( this.$element.is( "input" ) ){
@@ -40,7 +40,29 @@
 					else {
 						self.menu.open( this, false );
 					}
+
 				})
+				.bind( "input keydown", function( e ){
+					if( e.keyCode === 38 ){
+						self.menu.moveSelected( "prev" );
+						e.preventDefault();
+					}
+					if( e.keyCode === 40 ){
+						self.menu.moveSelected( "next" );
+						e.preventDefault();
+					}
+					if( e.keyCode === 13 ){
+						self.menu.selectActive();
+					}
+					if( e.keyCode === 27 ){
+						self.menu.close();
+					}
+				})
+				.bind( "focus click", function(){
+					if( this.value !== "" ){
+						self.menu.open();
+					}
+				} )
 				.bind( "blur", function( e ){
 					self.menu.close();
 				});
