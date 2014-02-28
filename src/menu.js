@@ -29,7 +29,7 @@
 			html += "<li>" + item + "</li>";
 		});
 
-		this.$element.html( html );
+		this.$element.find( "ol,ul" ).html( html );
 	};
 
 	menu.prototype.open = function( trigger, sendFocus ){
