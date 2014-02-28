@@ -13,7 +13,7 @@
 
 	$.fn[ pluginName ] = function(){
 		return this.each(function(){
-			new Menu( this ).init();
+			new window.componentNamespace.Menu( this ).init();
 		});
 	};
 
@@ -23,4 +23,3 @@
 	});
 
 }( Menu, jQuery, this ));
-

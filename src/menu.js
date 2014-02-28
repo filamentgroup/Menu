@@ -19,9 +19,18 @@
 		}
 		this.element = element;
 		this.$element = $( element );
+		this.opened = true;
 	};
 
-	menu.prototype.opened = true;
+	menu.prototype.fill = function( items ) {
+		var html = "";
+
+		$.each( items, function( i, item ){
+			html += "<li>" + item + "</li>";
+		});
+
+		this.$element.html( html );
+	};
 
 	menu.prototype.open = function( trigger, sendFocus ){
 		if( this.opened ){
@@ -74,7 +83,5 @@
 		this.$element.trigger( componentName + ":init" );
 	};
 
-	w[ componentName ] = menu;
-
+	(w.componentNamespace = w.componentNamespace || w)[ componentName ] = menu;
 }( jQuery, this ));
-
