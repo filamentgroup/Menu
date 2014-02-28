@@ -11,7 +11,9 @@
 	var componentName = "Menu",
 		at = {
 			ariaHidden: "aria-hidden"
-		};
+		},
+		selectClass = "menu-selected",
+		focusables = "a,input,[tabindex]";
 
 	var menu = function( element ){
 		if( !element ){
@@ -32,6 +34,81 @@
 		this.$element.find( "ol,ul" ).html( html );
 	};
 
+	menu.prototype.moveSelected = function( placement, focus ){
+		var $items = this.$element.find( "li" ),
+			$selected = $items.filter( "." + selectClass ),
+			$nextSelected;
+
+		if( !$selected.length || placement === "start" ){
+			$nextSelected = $items.eq( 0 );
+		}
+		else if( placement === "next" ){
+			$nextSelected = $selected.next();
+			if( !$nextSelected.length ){
+				$nextSelected = $items.eq( 0 );
+			}
+		}
+		else {
+			$nextSelected = $selected.prev();
+			if( !$nextSelected.length ){
+				$nextSelected = $items.eq( $items.length - 1 );
+			}
+		}
+		$selected.removeClass( selectClass );
+		$nextSelected.addClass( selectClass );
+
+		if( focus || $( w.document.activeElement ).closest( $selected ).length ){
+			if( $nextSelected.is( focusables ) ){
+				$nextSelected[ 0 ].focus();
+			}
+			else{
+				var $focusChild = $nextSelected.find( focusables );
+				if( $focusChild.length ){
+					$focusChild[ 0 ].focus();
+				}
+			}
+		}
+	};
+
+	menu.prototype.selectActive = function(){
+		var trigger = this.$element.data( componentName + "-trigger" ),
+			$selected = this.$element.find( "li." + selectClass );
+
+		if( trigger && $( trigger ).is( "input" ) ){
+			trigger.value = $selected.text();
+		}
+		$selected.trigger( componentName + ":select" );
+		this.close();
+	};
+
+	menu.prototype._bindKeyHandling = function(){
+		var self = this;
+		this.$element
+			.bind( "keydown", function( e ){
+				if( e.keyCode === 38 ){
+					self.moveSelected( "prev" );
+					e.preventDefault();
+				}
+				if( e.keyCode === 40 ){
+					self.moveSelected( "next" );
+					e.preventDefault();
+				}
+				if( e.keyCode === 13 ){
+					self.selectActive();
+				}
+				if( e.keyCode === 27 ){
+					self.close();
+				}
+			})
+			.bind( "mouseover", function( e ){
+				self.$element.find( "." + selectClass ).removeClass( selectClass );
+				$( e.target ).closest( "li" ).addClass( selectClass );
+			})
+			.bind( "click", function( e ){
+				self.selectActive();
+			});
+	};
+
 	menu.prototype.open = function( trigger, sendFocus ){
 		if( this.opened ){
 			return;
@@ -40,10 +117,7 @@
 
 		this.$element.data( componentName + "-trigger", trigger );
 		this.opened = true;
-		var $focusable = this.$element.find( "a,[tabindex],input" );
-		if( $focusable.length && sendFocus !== false ){
-			$focusable[ 0 ].focus();
-		}
+		this.moveSelected( "start", sendFocus );
 		this.$element.trigger( componentName + ":open" );
 	};
 
@@ -60,8 +134,8 @@
 		this.$element.trigger( componentName + ":close" );
 	};
 
-	menu.prototype.toggle = function(){
-		this[ this.opened ? "close" : "open" ]();
+	menu.prototype.toggle = function( trigger, sendFocus ){
+		this[ this.opened ? "close" : "open" ]( trigger, sendFocus );
 	};
 
 	menu.prototype.init = function(){
@@ -79,6 +153,8 @@
 		$( document ).bind( "mouseup", function(){
 			self.close();
 		} );
+
+		this._bindKeyHandling();
 
 		this.$element.trigger( componentName + ":init" );
 	};
