@@ -79,23 +79,32 @@
 		}
 		$selected.trigger( componentName + ":select" );
 		this.close();
+		return $selected.text();
+	};
+
+	menu.prototype.keycodes = {
+		38 : function(e) {
+			this.moveSelected( "prev" );
+			e.preventDefault();
+		},
+
+		40 : function(e){
+			this.moveSelected( "next" );
+			e.preventDefault();
+		},
+
+		13 : function(){
+			// return the selected value
+			return this.selectActive();
+		},
+
+		27 : function(){
+			this.close();
+		}
 	};
 
 	menu.prototype.keyDown = function( e ){
-		if( e.keyCode === 38 ){
-			this.moveSelected( "prev" );
-			e.preventDefault();
-		}
-		if( e.keyCode === 40 ){
-			this.moveSelected( "next" );
-			e.preventDefault();
-		}
-		if( e.keyCode === 13 ){
-			this.selectActive();
-		}
-		if( e.keyCode === 27 ){
-			this.close();
-		}
+		return $.proxy(this.keycodes[e.keyCode] || function() {}, this)( e );
 	};
 
 	menu.prototype._bindKeyHandling = function(){
@@ -161,6 +170,10 @@
 		this._bindKeyHandling();
 
 		this.$element.trigger( componentName + ":init" );
+	};
+
+	menu.prototype.isOpen = function(){
+		return this.opened;
 	};
 
 	(w.componentNamespace = w.componentNamespace || w)[ componentName ] = menu;
