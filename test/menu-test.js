@@ -1,5 +1,5 @@
 /*global Menu:true*/
-(function($) {
+(function() {
 	/*
 		======== A Handy Little QUnit Reference ========
 		http://api.qunitjs.com/
@@ -20,5 +20,9 @@
 			notStrictEqual(actual, expected, [message])
 			throws(block, [expected], [message])
 	*/
+
+	test( "Menu is defined", function(){
+		ok( Menu );
+	} );
 
 }(jQuery));

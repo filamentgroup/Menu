@@ -22,18 +22,50 @@
 					banner: '<%= banner %>',
 					stripBanners: true
 				},
-				dist: {
-					src: ['src/<%= pkg.name %>.js','src/<%= pkg.name %>-init.js'],
+				distMenu: {
+					src: ['src/<%= pkg.name %>.js'],
 					dest: 'dist/<%= pkg.name %>.js'
+				},
+				distMenuInit: {
+					src: ['src/<%= pkg.name %>-init.js'],
+					dest: 'dist/<%= pkg.name %>-init.js'
+				},
+				distMenuTrigger: {
+					src: ['src/<%= pkg.name %>-trigger.js'],
+					dest: 'dist/<%= pkg.name %>-trigger.js'
+				},
+				distMenuTriggerInit: {
+					src: ['src/<%= pkg.name %>-trigger-init.js'],
+					dest: 'dist/<%= pkg.name %>-trigger-init.js'
+				},
+				distMenuAll: {
+					src: ['<%= concat.distMenu.dest %>', '<%= concat.distMenuInit.dest %>', '<%= concat.distMenuTrigger.dest %>','<%= concat.distMenuTriggerInit.dest %>' ],
+					dest: 'dist/<%= pkg.name %>-all.js'
 				}
 			},
 			uglify: {
 				options: {
 					banner: '<%= banner %>'
 				},
-				dist: {
-					src: '<%= concat.dist.dest %>',
+				distMenu: {
+					src: ['<%= concat.distMenu.src %>'],
 					dest: 'dist/<%= pkg.name %>.min.js'
+				},
+				distMenuInit: {
+					src: ['<%= concat.distMenuInit.src %>'],
+					dest: 'dist/<%= pkg.name %>-init.min.js'
+				},
+				distMenuTrigger: {
+					src: ['<%= concat.distMenuTrigger.src %>'],
+					dest: 'dist/<%= pkg.name %>-trigger.min.js'
+				},
+				distMenuTriggerInit: {
+					src: ['<%= concat.distMenuTriggerInit.src %>'],
+					dest: 'dist/<%= pkg.name %>-trigger-init.min.js'
+				},
+				distMenuAll: {
+					src: ['<%= concat.distMenuAll.src %>'],
+					dest: 'dist/<%= pkg.name %>-all.min.js'
 				}
 			},
 			qunit: {
