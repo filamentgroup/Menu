@@ -81,25 +81,29 @@
 		this.close();
 	};
 
+	menu.prototype.keyDown = function( e ){
+		if( e.keyCode === 38 ){
+			this.moveSelected( "prev" );
+			e.preventDefault();
+		}
+		if( e.keyCode === 40 ){
+			this.moveSelected( "next" );
+			e.preventDefault();
+		}
+		if( e.keyCode === 13 ){
+			this.selectActive();
+		}
+		if( e.keyCode === 27 ){
+			this.close();
+		}
+	};
+
 	menu.prototype._bindKeyHandling = function(){
 		var self = this;
 		this.$element
 			.bind( "keydown", function( e ){
-				if( e.keyCode === 38 ){
-					self.moveSelected( "prev" );
-					e.preventDefault();
-				}
-				if( e.keyCode === 40 ){
-					self.moveSelected( "next" );
-					e.preventDefault();
-				}
-				if( e.keyCode === 13 ){
-					self.selectActive();
-				}
-				if( e.keyCode === 27 ){
-					self.close();
-				}
-			})
+				self.keyDown( e );
+			} )
 			.bind( "mouseover", function( e ){
 				self.$element.find( "." + selectClass ).removeClass( selectClass );
 				$( e.target ).closest( "li" ).addClass( selectClass );
