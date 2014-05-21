@@ -25,7 +25,7 @@ jQuery(function($) {
 ```
 
 ## Demo
-Check the demo [here](http://filamentgroup.github.io/menu/)
+Check the demo [here](http://filamentgroup.github.io/Menu/examples/)
 
 ## Release History
 v0.1.0 - First release

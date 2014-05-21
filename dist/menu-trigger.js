@@ -1,10 +1,6 @@
-/*
- * menu-trigger plugin
- *
- * Copyright (c) 2013 Filament Group, Inc.
- * Licensed under MIT
- */
-
+/*! Menu - v0.1.0 - 2014-05-21
+* https://github.com/filamentgroup/menu
+* Copyright (c) 2014 Filament Group; Licensed MIT */
 (function( $, w ) {
 	"use strict";
 
