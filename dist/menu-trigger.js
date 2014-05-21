@@ -1,4 +1,4 @@
-/*! Menu - v0.1.0 - 2014-03-03
+/*! Menu - v0.1.0 - 2014-05-21
 * https://github.com/filamentgroup/menu
 * Copyright (c) 2014 Filament Group; Licensed MIT */
 (function( $, w ) {
