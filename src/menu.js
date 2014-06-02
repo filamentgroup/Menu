@@ -117,6 +117,9 @@
 				self.$element.find( "." + selectClass ).removeClass( selectClass );
 				$( e.target ).closest( "li" ).addClass( selectClass );
 			})
+			.bind( "mouseleave", function( e ){
+				$( e.target ).closest( "li" ).removeClass( selectClass );
+			})
 			.bind( "click", function(){
 				self.selectActive();
 			});
