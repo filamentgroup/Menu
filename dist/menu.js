@@ -1,4 +1,4 @@
-/*! Menu - v0.1.0 - 2014-05-21
+/*! Menu - v0.1.0 - 2014-12-08
 * https://github.com/filamentgroup/menu
 * Copyright (c) 2014 Filament Group; Licensed MIT */
 (function( $, w ) {
@@ -100,7 +100,8 @@
 	};
 
 	menu.prototype.keyDown = function( e ){
-		return $.proxy(this.keycodes[e.keyCode] || function() {}, this)( e );
+		var fn = this.keycodes[e.keyCode] || function(){};
+		return fn.call( this, e );
 	};
 
 	menu.prototype._bindKeyHandling = function(){
@@ -112,6 +113,9 @@
 			.bind( "mouseover", function( e ){
 				self.$element.find( "." + selectClass ).removeClass( selectClass );
 				$( e.target ).closest( "li" ).addClass( selectClass );
+			})
+			.bind( "mouseleave", function( e ){
+				$( e.target ).closest( "li" ).removeClass( selectClass );
 			})
 			.bind( "click", function(){
 				self.selectActive();

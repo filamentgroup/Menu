@@ -104,7 +104,8 @@
 	};
 
 	menu.prototype.keyDown = function( e ){
-		return $.proxy(this.keycodes[e.keyCode] || function() {}, this)( e );
+		var fn = this.keycodes[e.keyCode] || function(){};
+		return fn.call( this, e );
 	};
 
 	menu.prototype._bindKeyHandling = function(){
