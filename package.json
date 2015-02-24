@@ -1,6 +1,11 @@
 {
   "name": "jquery-plugin",
   "version": "0.0.0-ignored",
+  "author": {
+		"name": "Scott Jehl",
+		"email": "scott@filamentgroup.com",
+		"url": "http://filamentgroup.com"
+	},
   "engines": {
     "node": ">= 0.8.0"
   },
