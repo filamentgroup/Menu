@@ -1,6 +1,6 @@
 # Menu
 
-jQuery Plugin for progressively enhanced menus
+jQuery/Shoestring plugin for progressively enhanced menus
 
 [![Filament Group](http://filamentgroup.com/images/fg-logo-positive-sm-crop.png) ](http://www.filamentgroup.com/)
 
@@ -13,10 +13,10 @@ Download the [production version][min] or the [development version][max].
 In your web page:
 
 ```html
-<script src="jquery.js"></script>
+<script src="shoestring.js"></script>
 <script src="dist/menu.min.js"></script>
 <script>
-jQuery(function($) {
+$(function($) {
 	$( document ).bind( "enhance", function(){
 		$( "body" ).addClass( "enhanced" );
 	});
