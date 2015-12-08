@@ -1,6 +1,8 @@
-/*! Menu - v0.1.0 - 2014-12-08
+/*! Menu - v0.1.2 - 2015-12-08
 * https://github.com/filamentgroup/menu
-* Copyright (c) 2014 Filament Group; Licensed MIT */
+* Copyright (c) 2015 Scott Jehl; Licensed MIT */
+window.jQuery = window.jQuery || window.shoestring;
+
 (function( $, w ) {
 	"use strict";
 
@@ -20,11 +22,13 @@
 		this.opened = true;
 	};
 
-	menu.prototype.fill = function( items ) {
+	menu.prototype.fill = function( items, selectedText ) {
 		var html = "";
 
 		$.each( items, function( i, item ){
-			html += "<li>" + item + "</li>";
+			html += "<li" +
+				( item === selectedText ? " class='" + selectClass + "'" : "" ) +
+				">" + item + "</li>";
 		});
 
 		this.$element.find( "ol,ul" ).html( html );
@@ -66,9 +70,13 @@
 		}
 	};
 
+	menu.prototype.getSelectedElement = function(){
+		return this.$element.find( "li." + selectClass );
+	};
+
 	menu.prototype.selectActive = function(){
-		var trigger = this.$element.data( componentName + "-trigger" ),
-			$selected = this.$element.find( "li." + selectClass );
+		var trigger = this.$element.data( componentName + "-trigger" );
+		var $selected = this.getSelectedElement();
 
 		if( trigger && $( trigger ).is( "input" ) ){
 			trigger.value = $selected.text();
