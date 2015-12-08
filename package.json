@@ -1,16 +1,23 @@
 {
-  "name": "jquery-plugin",
-  "version": "0.0.0-ignored",
+  "name": "fg-menu",
+  "filename": "menu",
+  "title": "Menu",
+  "description": "jQuery Plugin for progressively enhanced menus",
+  "version": "0.1.2",
+  "homepage": "https://github.com/filamentgroup/menu",
   "author": {
     "name": "Scott Jehl",
     "email": "scott@filamentgroup.com",
     "url": "http://filamentgroup.com"
   },
-  "engines": {
-    "node": ">= 0.8.0"
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/filamentgroup/menu.git"
   },
-  "scripts": {
-    "test": "grunt qunit"
+  "bugs": "https://github.com/filamentgroup/menu/issues",
+  "license": "MIT",
+  "dependencies": {
+    "jquery": "*"
   },
   "devDependencies": {
     "grunt-contrib-jshint": "~0.6.0",
@@ -20,5 +27,6 @@
     "grunt-contrib-watch": "~0.4.0",
     "grunt-contrib-clean": "~0.4.0",
     "grunt": "~0.4.2"
-  }
+  },
+  "keywords": []
 }
