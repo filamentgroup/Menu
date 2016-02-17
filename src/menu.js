@@ -106,6 +106,11 @@ window.jQuery = window.jQuery || window.shoestring;
 			return this.selectActive();
 		},
 
+		9 : function(e){
+			this.moveSelected( e.shiftKey ? "prev" : "next" );
+			e.preventDefault();
+		},
+
 		27 : function(){
 			this.close();
 		}
