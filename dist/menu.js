@@ -1,6 +1,6 @@
-/*! Menu - v0.1.2 - 2015-12-08
+/*! Menu - v0.1.3 - 2016-02-17
 * https://github.com/filamentgroup/menu
-* Copyright (c) 2015 Scott Jehl; Licensed MIT */
+* Copyright (c) 2016 Scott Jehl; Licensed MIT */
 window.jQuery = window.jQuery || window.shoestring;
 
 (function( $, w ) {
@@ -100,6 +100,11 @@ window.jQuery = window.jQuery || window.shoestring;
 		13 : function(){
 			// return the selected value
 			return this.selectActive();
+		},
+
+		9 : function(e){
+			this.moveSelected( e.shiftKey ? "prev" : "next" );
+			e.preventDefault();
 		},
 
 		27 : function(){

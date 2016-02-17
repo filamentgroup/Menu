@@ -1,9 +1,9 @@
-/*! Menu - v0.1.2 - 2015-12-08
+/*! Menu - v0.1.3 - 2016-02-17
 * https://github.com/filamentgroup/menu
-* Copyright (c) 2015 Scott Jehl; Licensed MIT */
-/*! Menu - v0.1.2 - 2015-12-08
+* Copyright (c) 2016 Scott Jehl; Licensed MIT */
+/*! Menu - v0.1.3 - 2016-02-17
 * https://github.com/filamentgroup/menu
-* Copyright (c) 2015 Scott Jehl; Licensed MIT */
+* Copyright (c) 2016 Scott Jehl; Licensed MIT */
 window.jQuery = window.jQuery || window.shoestring;
 
 (function( $, w ) {
@@ -105,6 +105,11 @@ window.jQuery = window.jQuery || window.shoestring;
 			return this.selectActive();
 		},
 
+		9 : function(e){
+			this.moveSelected( e.shiftKey ? "prev" : "next" );
+			e.preventDefault();
+		},
+
 		27 : function(){
 			this.close();
 		}
@@ -190,9 +195,9 @@ window.jQuery = window.jQuery || window.shoestring;
 	(w.componentNamespace = w.componentNamespace || w)[ componentName ] = menu;
 }( jQuery, this ));
 
-/*! Menu - v0.1.2 - 2015-12-08
+/*! Menu - v0.1.3 - 2016-02-17
 * https://github.com/filamentgroup/menu
-* Copyright (c) 2015 Scott Jehl; Licensed MIT */
+* Copyright (c) 2016 Scott Jehl; Licensed MIT */
 /* global Menu:true */
 (function( Menu, $ ) {
 
@@ -212,9 +217,9 @@ window.jQuery = window.jQuery || window.shoestring;
 
 }( Menu, jQuery, this ));
 
-/*! Menu - v0.1.2 - 2015-12-08
+/*! Menu - v0.1.3 - 2016-02-17
 * https://github.com/filamentgroup/menu
-* Copyright (c) 2015 Scott Jehl; Licensed MIT */
+* Copyright (c) 2016 Scott Jehl; Licensed MIT */
 (function( $, w ) {
 	"use strict";
 
@@ -287,9 +292,9 @@ window.jQuery = window.jQuery || window.shoestring;
 }( jQuery, this ));
 
 
-/*! Menu - v0.1.2 - 2015-12-08
+/*! Menu - v0.1.3 - 2016-02-17
 * https://github.com/filamentgroup/menu
-* Copyright (c) 2015 Scott Jehl; Licensed MIT */
+* Copyright (c) 2016 Scott Jehl; Licensed MIT */
 /* global Menutrigger:true */
 (function( Menutrigger, $ ) {
 

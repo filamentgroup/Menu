@@ -1,6 +1,6 @@
-/*! Menu - v0.1.2 - 2015-12-08
+/*! Menu - v0.1.3 - 2016-02-17
 * https://github.com/filamentgroup/menu
-* Copyright (c) 2015 Scott Jehl; Licensed MIT */
+* Copyright (c) 2016 Scott Jehl; Licensed MIT */
 /* global Menu:true */
 (function( Menu, $ ) {
 
