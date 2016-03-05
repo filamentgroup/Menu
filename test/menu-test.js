@@ -1,28 +1,23 @@
-/*global Menu:true*/
-(function() {
-	/*
-		======== A Handy Little QUnit Reference ========
-		http://api.qunitjs.com/
+/*global jQuery:true*/
+(function($) {
+	test( "only one menu can be opened at a time", function(){
+		expect(3);
+		var $options1 = $( "#options-1" );
+		var $options2 = $( "#options-2" );
 
-		Test methods:
-			module(name, {[setup][ ,teardown]})
-			test(name, callback)
-			expect(numberOfAssertions)
-			stop(increment)
-			start(decrement)
-		Test assertions:
-			ok(value, [message])
-			equal(actual, expected, [message])
-			notEqual(actual, expected, [message])
-			deepEqual(actual, expected, [message])
-			notDeepEqual(actual, expected, [message])
-			strictEqual(actual, expected, [message])
-			notStrictEqual(actual, expected, [message])
-			throws(block, [expected], [message])
-	*/
+		$options1.one("Menu:open", function(){
+			ok( true, "open called on first menu" );
+		});
 
-	test( "Menu is defined", function(){
-		ok( Menu );
-	} );
+		$options1.one("Menu:close", function(){
+			ok( true, "open called on first menu" );
+		});
 
+		$options2.one("Menu:open", function(){
+			ok( true, "open called on first menu" );
+		});
+
+		$options1.data("Menu").open();
+		$options2.data("Menu").open();
+	});
 }(jQuery));

@@ -16,7 +16,7 @@
 		}
 		this.element = element;
 		this.$element = $( element );
-		this.$menu = $( "#" +  this.$element.attr( "data-menu-trigger" ) );
+		this.$menu = $( "#" + this.$element.attr( "data-menu-trigger" ) );
 		this.menu = this.$menu.data( "Menu" );
 	};
 
@@ -33,11 +33,12 @@
 		}
 		else if( this.$element.is( "input" ) ){
 			this.$element
-				.bind( "input keyup", function(){
+				.bind( "input keyup", function(e){
 					if( this.value === "" ){
 						self.menu.close();
-					}
-					else {
+					} else if (e.keyCode == 27){
+						self.menu.close();
+					} else {
 						self.menu.open( this, false );
 					}
 
@@ -45,11 +46,12 @@
 				.bind( "input keydown", function( e ){
 					self.menu.keyDown( e );
 				})
-				.bind( "focus click", function(){
+				.bind( "focus click", function( e ){
 					if( this.value !== "" ){
 						self.menu.open();
+						e.target.focus();
 					}
-				} )
+				})
 				.bind( "blur", function(){
 					self.menu.close();
 				});
