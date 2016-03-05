@@ -21,6 +21,7 @@ window.jQuery = window.jQuery || window.shoestring;
 		if( !element ){
 			throw new Error( "Element required to initialize object" );
 		}
+
 		this.element = element;
 		this.$element = $( element );
 		this.opened = true;
@@ -143,6 +144,7 @@ window.jQuery = window.jQuery || window.shoestring;
 		if( this.opened ){
 			return;
 		}
+
 		this.$element.attr( at.ariaHidden, false );
 
 		this.$element.data( componentName + "-trigger", trigger );
@@ -182,15 +184,25 @@ window.jQuery = window.jQuery || window.shoestring;
 		// close on any click, even on the menu
 		$( document ).bind( "mouseup", function(){
 			self.close();
-		} );
+		});
 
 		this._bindKeyHandling();
 
 		this.$element.trigger( componentName + ":init" );
+
+		$( "body" ).bind( "Menu:open", function(event){
+			self.mutex(event);
+		});
 	};
 
 	menu.prototype.isOpen = function(){
 		return this.opened;
+	};
+
+	menu.prototype.mutex = function( event ){
+		if( this.element !== event.target ){
+			this.close();
+		}
 	};
 
 	(w.componentNamespace = w.componentNamespace || w)[ componentName ] = menu;

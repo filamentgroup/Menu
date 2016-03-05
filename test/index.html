@@ -10,19 +10,22 @@
 	<!-- Load local lib and tests. -->
 	<script src="../src/menu.js"></script>
 	<script src="../src/menu-init.js"></script>
+  <script>
+    $(function(){ $(document).trigger( "enhance" ); });
+  </script>
 	<script src="menu-test.js"></script>
 </head>
 <body>
 	<div id="qunit"></div>
 	<div id="qunit-fixture">
-		<div id="options" data-menu>
+		<div id="options-1" data-menu>
 			<ul>
 				<li><a href="#">Menu Item 1</a></li>
-				<li><a href="#">Menu Item 2</a></li>
-				<li><a href="#">Menu Item 3</a></li>
-				<li><a href="#">Menu Item 4</a></li>
-				<li><a href="#">Menu Item 5</a></li>
-				<li><a href="#">Menu Item 6</a></li>
+			</ul>
+		</div>
+		<div id="options-2" data-menu>
+			<ul>
+				<li><a href="#">Menu Item 1</a></li>
 			</ul>
 		</div>
 	</div>
