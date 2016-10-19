@@ -169,8 +169,6 @@ window.jQuery = window.jQuery || window.shoestring;
 	};
 
 	menu.prototype.init = function(){
-		var self = this;
-
 		// prevent re-init
 		if( this.$element.data( componentName ) ) {
 			return;
