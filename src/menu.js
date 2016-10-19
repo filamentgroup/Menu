@@ -143,6 +143,7 @@ window.jQuery = window.jQuery || window.shoestring;
 		if( this.opened ){
 			return;
 		}
+
 		this.$element.attr( at.ariaHidden, false );
 
 		this.$element.data( componentName + "-trigger", trigger );
@@ -181,8 +182,12 @@ window.jQuery = window.jQuery || window.shoestring;
 
 		// close on any click, even on the menu
 		$( document ).bind( "mouseup", function(){
-			self.close();
-		} );
+			// let the selectActive close do the work of closing the menu
+			// when the menu itself is clicked
+			if( !$(event.target).closest(self.$element[0]).length ){
+				self.close();
+			}
+		});
 
 		this._bindKeyHandling();
 

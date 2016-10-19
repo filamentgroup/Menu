@@ -45,15 +45,28 @@
 				.bind( "input keydown", function( e ){
 					self.menu.keyDown( e );
 				})
-				.bind( "focus click", function(){
-					if( this.value !== "" ){
+				.bind( "focus click", function(event){
+					if( this.value !== "" && self.isInMenu(event.relatedTarget) ) {
 						self.menu.open();
 					}
-				} )
-				.bind( "blur", function(){
-					self.menu.close();
+				})
+				.bind( "blur", function(event){
+					if( self.isInMenu(event.relatedTarget) ){
+						self.menu.close();
+					}
 				});
 		}
+
+		$(window.document).bind("focus", function(event){
+			return;
+			if(!$(event.target).closest( this.$menu[0] ).length){
+				self.menu.close();
+			}
+		});
+	};
+
+	Menutrigger.prototype.isInMenu = function(element){
+		return !$(element).closest( this.$menu[0] ).length;
 	};
 
 	Menutrigger.prototype.init = function(){
