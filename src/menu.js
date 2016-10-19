@@ -169,6 +169,8 @@ window.jQuery = window.jQuery || window.shoestring;
 	};
 
 	menu.prototype.init = function(){
+		var self = this;
+
 		// prevent re-init
 		if( this.$element.data( componentName ) ) {
 			return;
@@ -179,11 +181,11 @@ window.jQuery = window.jQuery || window.shoestring;
 		this.close();
 		var self = this;
 
-		// close on any click, even on the menu
-		// NOTE we can't close on `mouseup` in case there's overflow scrolling
-		// because the `mouseup` event is fired when using the scrollbar
-		$( document ).bind( "click", function(){
-			self.close();
+		$( document ).bind( "mouseup", function(event){
+			// only close the menu if the click is outside the menu element
+			if( ! $(event.target).closest( self.$element[0] ).length ){
+				self.close();
+			}
 		});
 
 		this._bindKeyHandling();
