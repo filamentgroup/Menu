@@ -179,10 +179,12 @@ window.jQuery = window.jQuery || window.shoestring;
 		this.close();
 		var self = this;
 
-		// close on any click, even on the menu
-		$( document ).bind( "mouseup", function(){
-			self.close();
-		} );
+		$( document ).bind( "mouseup", function(event){
+			// only close the menu if the click is outside the menu element
+			if( ! $(event.target).closest( self.$element[0] ).length ){
+				self.close();
+			}
+		});
 
 		this._bindKeyHandling();
 
