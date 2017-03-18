@@ -1,6 +1,6 @@
-/*! Menu - v0.1.3 - 2016-02-17
+/*! Menu - v0.1.4 - 2017-03-18
 * https://github.com/filamentgroup/menu
-* Copyright (c) 2016 Scott Jehl; Licensed MIT */
+* Copyright (c) 2017 Scott Jehl; Licensed MIT */
 window.jQuery = window.jQuery || window.shoestring;
 
 (function( $, w ) {
@@ -175,10 +175,12 @@ window.jQuery = window.jQuery || window.shoestring;
 		this.close();
 		var self = this;
 
-		// close on any click, even on the menu
-		$( document ).bind( "mouseup", function(){
-			self.close();
-		} );
+		$( document ).bind( "mouseup", function(event){
+			// only close the menu if the click is outside the menu element
+			if( ! $(event.target).closest( self.$element[0] ).length ){
+				self.close();
+			}
+		});
 
 		this._bindKeyHandling();
 

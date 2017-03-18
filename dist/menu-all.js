@@ -1,9 +1,9 @@
-/*! Menu - v0.1.3 - 2016-02-17
+/*! Menu - v0.1.4 - 2017-03-18
 * https://github.com/filamentgroup/menu
-* Copyright (c) 2016 Scott Jehl; Licensed MIT */
-/*! Menu - v0.1.3 - 2016-02-17
+* Copyright (c) 2017 Scott Jehl; Licensed MIT */
+/*! Menu - v0.1.4 - 2017-03-18
 * https://github.com/filamentgroup/menu
-* Copyright (c) 2016 Scott Jehl; Licensed MIT */
+* Copyright (c) 2017 Scott Jehl; Licensed MIT */
 window.jQuery = window.jQuery || window.shoestring;
 
 (function( $, w ) {
@@ -178,10 +178,12 @@ window.jQuery = window.jQuery || window.shoestring;
 		this.close();
 		var self = this;
 
-		// close on any click, even on the menu
-		$( document ).bind( "mouseup", function(){
-			self.close();
-		} );
+		$( document ).bind( "mouseup", function(event){
+			// only close the menu if the click is outside the menu element
+			if( ! $(event.target).closest( self.$element[0] ).length ){
+				self.close();
+			}
+		});
 
 		this._bindKeyHandling();
 
@@ -195,9 +197,9 @@ window.jQuery = window.jQuery || window.shoestring;
 	(w.componentNamespace = w.componentNamespace || w)[ componentName ] = menu;
 }( jQuery, this ));
 
-/*! Menu - v0.1.3 - 2016-02-17
+/*! Menu - v0.1.4 - 2017-03-18
 * https://github.com/filamentgroup/menu
-* Copyright (c) 2016 Scott Jehl; Licensed MIT */
+* Copyright (c) 2017 Scott Jehl; Licensed MIT */
 /* global Menu:true */
 (function( Menu, $ ) {
 
@@ -217,9 +219,9 @@ window.jQuery = window.jQuery || window.shoestring;
 
 }( Menu, jQuery, this ));
 
-/*! Menu - v0.1.3 - 2016-02-17
+/*! Menu - v0.1.4 - 2017-03-18
 * https://github.com/filamentgroup/menu
-* Copyright (c) 2016 Scott Jehl; Licensed MIT */
+* Copyright (c) 2017 Scott Jehl; Licensed MIT */
 (function( $, w ) {
 	"use strict";
 
@@ -292,9 +294,9 @@ window.jQuery = window.jQuery || window.shoestring;
 }( jQuery, this ));
 
 
-/*! Menu - v0.1.3 - 2016-02-17
+/*! Menu - v0.1.4 - 2017-03-18
 * https://github.com/filamentgroup/menu
-* Copyright (c) 2016 Scott Jehl; Licensed MIT */
+* Copyright (c) 2017 Scott Jehl; Licensed MIT */
 /* global Menutrigger:true */
 (function( Menutrigger, $ ) {
 
